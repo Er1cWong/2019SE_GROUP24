@@ -1,0 +1,347 @@
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/static/images/favicon.ico">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>政府大数据分析</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="/static/css/animate.min.css" rel="stylesheet"/>
+
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="/static/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="/static/css/demo.css" rel="stylesheet" />
+
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/css/pe-icon-7-stroke.css" rel="stylesheet" />
+
+    <!--     Charts dependencies  -->
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+
+
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar"  data-image="/static/images/b1.jpg">
+
+    <!--
+
+        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+        Tip 2: you can also add an image using data-image tag
+
+    -->
+
+    	<div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="#" class="simple-text">
+                    菜单
+                </a>
+            </div>
+            <ul class="nav">
+                <li>
+                    <a href="/AbnormalEvents">
+                        <i class="pe-7s-note"></i>
+                        <p>异常事件</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/show1">
+                        <i class="pe-7s-graph"></i>
+                        <p>民生分析</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/show2">
+                        <i class="pe-7s-graph3"></i>
+                        <p>各街道民生事件情况</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/show3">
+                        <i class="pe-7s-map-marker"></i>
+                        <p>社区热力图</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="/show4">
+                        <i class="pe-7s-graph"></i>
+                        <p>事件结办情况</p>
+                    </a>
+                </li>
+            </ul>
+    	</div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" >数据可视化图表</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/admin">
+                                数据库管理
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/accounts/logout">
+                                登出
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="content">
+                        <input checked type="radio" id="choice_id" name="choice" value="today" /> 今日
+                        <input type="radio" id="choice_id" name="choice" value="month" /> 选择月份：
+                        <input id="date_id" name="date" type="month" value="2018-10"/>
+                        <input type="radio" id="choice_id" name="choice" value="season" /> 选择季度：
+                        <input id="year_id" name="year" type="year" value="2018"/>年
+                        第<select id="season_id">
+                            <option value ="1">1</option>
+                            <option value ="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>季
+                        <button id="formquery">查询</button>
+                        <div id="container" style="height: 80%; margin: 0 auto"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+   <!--   Core JS Files   -->
+
+	<script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!--  Checkbox, Radio & Switch Plugins -->
+	<script src="/static/js/bootstrap-checkbox-radio-switch.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="/static/js/bootstrap-notify.js"></script>
+
+    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+	<script src="/static/js/light-bootstrap-dashboard.js"></script>
+
+
+
+
+
+<script language="JavaScript">
+var chart;
+$(document).ready(function () {
+    $("[name='choice']:first").attr("checked",'true');
+    chart = new Highcharts.Chart(get_option());
+    ajax_getresult();
+    $("button").click(function () {
+        ajax_getresult();
+    });
+});
+setInterval(function(){
+    ajax_update();
+}, 5000);
+var istoday;
+var isseason;
+var month;
+var year;
+var season;
+function ajax_getresult() {
+    var url = $(this);
+    istoday=$("[name='choice']:first").prop("checked");
+    isseason=$("[name='choice']:last").prop("checked");
+    month=$('#date_id').val();
+    year=$('#year_id').val();
+    season=$('#season_id').val();
+    $.ajax({
+        url: url,
+        data: {
+            'istoday': istoday,
+            'isseason': isseason,
+            'month': month,
+            'year':year,
+            'season':season
+        },
+        success: function(return_data){
+            var isnone = return_data.isnone;
+            if(isnone == true){
+                alert("选择的时间范围没有数据");
+            }
+            var viewcategories=return_data.viewcategories;
+            var viewy=return_data.viewy;
+            var viewdcategorie=return_data.viewdcategorie;
+            var viewddata=return_data.viewddata;
+            var data = getdata(viewy,viewdcategorie,viewddata);
+            var datas = Getdatas(viewcategories,data);
+            chart.series[0].setData(datas.browserData);
+            chart.series[1].setData(datas.versionsData);
+        }
+    })
+};
+function ajax_update() {
+    var url = $(this);
+    $.ajax({
+        url: url,
+        data: {
+            'istoday': istoday,
+            'isseason': isseason,
+            'month': month,
+            'year':year,
+            'season':season
+        },
+        success: function(return_data){
+            var viewcategories=return_data.viewcategories;
+            var viewy=return_data.viewy;
+            var viewdcategorie=return_data.viewdcategorie;
+            var viewddata=return_data.viewddata;
+            var data = getdata(viewy,viewdcategorie,viewddata);
+            var datas = Getdatas(viewcategories,data);
+            chart.series[0].setData(datas.browserData);
+            chart.series[1].setData(datas.versionsData);
+        }
+    })
+};
+function get_option(){
+   
+   var chart = {
+    renderTo : 'container',
+      type: 'pie'
+   };
+   var title = {
+      text: '结办情况'
+   };
+   var yAxis = {
+      title: {
+         text: ''
+      }
+   };
+   var tooltip = {
+      valueSuffix: '%'
+   };
+   var plotOptions = {
+      pie: {
+         shadow: false,
+         center: ['50%', '50%']
+      }
+   };
+   var series= [{
+      name: '占比',
+            data: [],
+            size: '60%',
+            dataLabels: {
+                formatter: function () {
+                    return this.y > 5 ? this.point.name : null;
+                },
+                color: 'white',
+                distance: -30
+            }
+        }, {
+            name: '占比',
+            data: [],
+            size: '100%',
+            innerSize: '80%',
+            dataLabels: {
+                formatter: function () {
+                    // display only if larger than 1
+                    return this.y > 1 ? '' + this.point.name + ': ' + this.y + '%'  : null;
+                }
+            }
+        }
+   ];
+
+   var json = {};
+   json.chart = chart;
+   json.title = title;
+   json.yAxis = yAxis;
+   json.tooltip = tooltip;
+   json.series = series;
+   json.plotOptions = plotOptions;
+   return json;
+};
+function getdata(y,dcategorie,ddata){
+    var colors = Highcharts.getOptions().colors;
+    colorcnt = 0;
+    function getcolor(){
+        var color = colors[colorcnt];
+        colorcnt += 1;
+        return color;
+    }
+    function getcolors(length){
+        var color_arr = [];
+        for(var i=0;i<length;i+=1){
+            color_arr.push(colors[i%10]);
+        }
+        return color_arr;
+    }
+    var i,arr = [];
+    for (i = 0; i<y.length; i++) {
+        arr.push({
+            y: y[i],
+            color:getcolor(),
+            drilldown: {
+                name: 'events',
+                categories: dcategorie[i],
+                data:ddata[i],
+                color:getcolors(ddata[i].length),
+            }
+        });
+    }
+    return arr;
+};
+function Getdatas(categories,data){
+    var browserData = [];
+    var versionsData = [];
+    var drillDataLen;
+    var brightness;
+    var i, j;
+    // Build the data arrays
+    for (i = 0; i < data.length; i += 1) {
+        // add browser data
+        browserData.push({
+            name: categories[i],
+            y: data[i].y,
+            color: data[i].color
+        });
+
+        // add version data
+        drillDataLen = data[i].drilldown.data.length;
+        for (j = 0; j < drillDataLen; j += 1) {
+            //brightness = 0.2 - (j / drillDataLen) / 5;
+            versionsData.push({
+                name: data[i].drilldown.categories[j],
+                y: data[i].drilldown.data[j],
+                color: data[i].drilldown.color[j]
+            });
+        }
+    }
+    var json = {};
+    json.browserData = browserData;
+    json.versionsData = versionsData;
+    return json 
+};
+
+</script>
+</html>

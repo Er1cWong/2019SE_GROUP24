@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"> 
+        <title>测试用表-dataset</title>    
+    </head>    
+    <body>                 
+        <table>   
+                <td> field_id </td>
+                <td> report_num </td>
+                <td> create_time </td>
+                <td> district_name </td>
+                <td> district_id </td>
+                <td> street_name </td>
+                <td> street_id </td>
+                <td> community_name </td>
+                <td> community_id </td>
+                <td> event_type_name </td>
+                <td> event_type_id </td>
+                <td> main_type_name </td>
+                <td> main_type_id </td>
+                <td> sub_type_name </td>
+                <td> sub_type_id </td>
+                <td> dispose_unit_name </td>
+                <td> dispose_unit_id </td>
+                <td> event_src_name </td>
+                <td> event_src_id </td>
+                <td> operate_num </td>
+                <td> overtime_archive_num </td>
+                <td> intime_to_archive_num </td>
+                <td> intime_archive_num </td>
+                <td> event_property_id </td>
+                <td> event_property_name </td>
+                <td> occur_place </td>
+            {% for a in data %}
+             <tr>
+                <td>{{a.field_id}}</td>
+                <td>{{a.report_num}}</td>
+                <td>{{a.create_time}}</td>
+                <td>{{a.district_name}}</td>
+                <td>{{a.district_id}}</td>
+                <td>{{a.street_name}}</td>
+                <td>{{a.street_id}}</td>
+                <td>{{a.community_name}}</td>
+                <td>{{a.community_id}}</td>
+                <td>{{a.event_type_name}}</td>
+                <td>{{a.event_type_id}}</td>
+                <td>{{a.main_type_name}}</td>
+                <td>{{a.main_type_id}}</td>
+                <td>{{a.sub_type_name}}</td>
+                <td>{{a.sub_type_id}}</td>
+                <td>{{a.dispose_unit_name}}</td>
+                <td>{{a.dispose_unit_id}}</td>
+                <td>{{a.event_src_name}}</td>
+                <td>{{a.event_src_id}}</td>
+                <td>{{a.operate_num}}</td>
+                <td>{{a.overtime_archive_num}}</td>
+                <td>{{a.intime_to_archive_num}}</td>
+                <td>{{a.intime_archive_num}}</td>
+                <td>{{a.event_property_id}}</td>
+                <td>{{a.event_property_name}}</td>
+                <td>{{a.occur_place}}</td>
+             </tr>
+            {%endfor%}
+        </table>
+    </body> 
+
+</html>

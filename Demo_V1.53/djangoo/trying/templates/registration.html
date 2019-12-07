@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+  <title>注册一个账户</title>
+  <!-- Meta tags -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="keywords" content=""
+	 />
+  <script>
+	 addEventListener("load", function () { setTimeout(hideURLbar, 0); }, false); function hideURLbar() { window.scrollTo(0, 1); }
+  </script>
+  <!-- Meta tags -->
+  <!--stylesheets-->
+  <link href="/static/css/style.css" rel='stylesheet' type='text/css' media="all">
+  <!--//style sheet end here-->
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+</head>
+
+<body>
+  <div class="mid-class">
+	 <div class="art-right-w3ls">
+		<h2>注册一个账户</h2>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+		   <div class="main">
+			  <div class="form-left-to-w3l">
+				 <input id="id_username" type="text" name="username" placeholder="用户名（长度不少于6位）" required="">
+              </div>
+              <div class="form-left-to-w3l margin-zero">
+                <input id="id_password1" type="password" name="password1" placeholder="密码（长度不少于6位）" required="">
+              </div>
+			  <div class="form-left-to-w3l ">
+				 <input id="id_password2" type="password" name="password2" placeholder="确认密码" required="">
+				 <div class="clear"></div>
+			  </div>
+			  <div class="form-left-to-w3l ">
+				<input id="id_unit_name" type="text" list="unit_list" name="unit_name" placeholder="工作单位（点击输入栏选择）" required="">
+				<datalist id="unit_list">
+					<option value="区测试责任单位一" />
+					<option value="区责任单位" />
+					<option value="区委组织部" />
+					<option value="区委（区政府）办公室" />
+					<option value="区委宣传部（文体旅游局）" />
+					<option value="区委政法委" />
+					<option value="发展和改革局（统计局）" />
+					<option value="经济和科技促进局" />
+					<option value="教育局" />
+					<option value="民政局" />
+					<option value="财政局（国资办）" />
+					<option value="人力资源局" />
+					<option value="环境保护和水务局" />
+					<option value="环境水政监察大队" />
+					<option value="住房和建设局" />
+					<option value="卫生和计划生育局" />
+					<option value="城市管理局" />
+					<option value="安全生产监督管理局" />
+					<option value="群团工作部" />
+					<option value="规划土地监察大队" />
+					<option value="城市更新局" />
+					<option value="机关事务管理局" />
+					<option value="建筑工务局" />
+					<option value="土地整备局" />
+					<option value="政府投资项目前期工作管理办公室" />
+					<option value="科技创新服务署" />
+					<option value="交通轨道办" />
+					<option value="纪律检查工作委员会（坪山街道办事处）" />
+					<option value="安全生产监督管理办公室（坪山街道办事处）" />
+					<option value="土地整备中心（坪山街道办事处）" />
+					<option value="城建办公室（坪山街道办事处）" />
+					<option value="市政服务中心（坪山街道办事处）" />
+					<option value="消安委办（坪山街道办事处）" />
+					<option value="六和社区（坪山街道办事处）" />
+					<option value="六和社区" />
+					<option value="六联社区" />
+					<option value="六联社区（坪山街道办事处）" />
+					<option value="坪山社区" />
+					<option value="坪山社区（坪山街道办事处）" />
+					<option value="和平社区" />
+					<option value="和平社区（坪山街道办事处）" />
+					<option value="组织部（坑梓街道办事处）" />
+					<option value="机关事务中心" />
+					<option value="沙田社区" />
+					<option value="沙田社区（坑梓街道办事处）" />
+					<option value="市政服务中心（坑梓街道办事处）" />
+					<option value="纪工委（坑梓街道办事处）" />
+					<option value="城管办（坑梓街道办事处）" />
+					<option value="金沙社区" />
+					<option value="金沙社区（坑梓街道办事处）" />
+					<option value="安监办（坑梓街道办事处）" />
+					<option value="劳动办（坑梓街道办事处）" />
+					<option value="坑梓社区" />
+					<option value="坑梓社区（坑梓街道办事处）" />
+					<option value="秀新社区" />
+					<option value="秀新社区（坑梓街道办事处）" />
+					<option value="纪工委（龙田街道办事处）" />
+					<option value="组织部（龙田街道办事处）" />
+					<option value="劳动办（龙田街道办事处）" />
+					<option value="土地整备中心（龙田街道办事处）" />
+					<option value="武装部（龙田街道办事处）" />
+					<option value="市政服务中心（龙田街道办事处）" />
+					<option value="南布社区" />
+					<option value="南布社区（龙田街道办事处）" />
+					<option value="竹坑社区" />
+					<option value="竹坑社区（龙田街道办事处）" />
+					<option value="龙田社区" />
+					<option value="龙田社区（龙田街道办事处）" />
+					<option value="老坑社区" />
+					<option value="老坑社区（龙田街道办事处）" />
+					<option value="公共服务办（石井街道办事处）" />
+					<option value="土地整备中心（石井街道办事处）" />
+					<option value="城建办公室（石井街道办事处）" />
+					<option value="消安委办（石井街道办事处）" />
+					<option value="石井社区工作站（石井街道办事处）" />
+					<option value="石井社区工作站" />
+					<option value="金龟社区工作站" />
+					<option value="田头社区工作站" />
+					<option value="田头社区工作站（石井街道办事处）" />
+					<option value="田心社区工作站（石井街道办事处）" />
+					<option value="街区发展办公室（马峦街道办事处）" />
+					<option value="城市管理办公室（马峦街道办事处）" />
+					<option value="市政服务中心（马峦街道办事处）" />
+					<option value="值班应急与智慧管理指挥分中心（马峦街道办事处）" />
+					<option value="公共服务办公室（马峦街道办事处）" />
+					<option value="综治维稳办公室（马峦街道办事处）" />
+					<option value="城建办公室（马峦街道办事处）" />
+					<option value="土地整备中心（马峦）" />
+					<option value="机关事务服务中心（马峦街道办事处）" />
+					<option value="劳动管理办公室（马峦街道办事处）" />
+					<option value="坪环社区" />
+					<option value="坪环社区（马峦街道办事处）" />
+					<option value="江岭社区" />
+					<option value="江岭社区（马峦街道办事处）" />
+					<option value="沙坣社区" />
+					<option value="沙坣社区（马峦街道办事处）" />
+					<option value="消防安全管理委员会办公室" />
+					<option value="办公室（碧岭街道办事处）" />
+					<option value="碧岭社区" />
+					<option value="碧岭社区（碧岭街道办事处）" />
+					<option value="汤坑社区" />
+					<option value="汤坑社区（碧岭街道办事处）" />
+					<option value="沙湖社区" />
+					<option value="沙湖社区（碧岭街道办事处）" />
+					<option value="公共服务办（碧岭街道办事处）" />
+					<option value="土地整备中心（碧岭办）" />
+					<option value="综治维稳办公室（碧岭街道办事处）" />
+					<option value="城管办（碧岭街道办事处）" />
+					<option value="消安委办（碧岭街道办事处）" />
+					<option value="城建办公室（碧岭街道办事处）" />
+					<option value="市规划国土委坪山管理局" />
+					<option value="市规土委坪山管理局" />
+					<option value="坪山交通运输局" />
+					<option value="坪山公安分局" />
+					<option value="社保坪山分局" />
+					<option value="市市场和质量监管委坪山局" />
+					<option value="市交警支队坪山大队" />
+					<option value="坪山供电局" />
+					<option value="城投公司" />
+					<option value="坪山自来水有限公司" />
+					<option value="坪山自来水有限公司（坪山街道办事处）" />
+					<option value="广东移动深圳公司" />
+					<option value="坪山街道综合执法队" />
+					<option value="坪山街道综合执法队（坪山街道办事处）" />
+					<option value="坪山街道电信营业中心" />
+					<option value="龙田街道综合执法队" />
+					<option value="龙田街道综合执法队（龙田街道办事处）" />
+					<option value="大工业区水务有限公司" />
+					<option value="碧岭办事处市政服务中心" />
+					<option value="碧岭办事处市政服务中心（碧岭街道办事处）" />
+					<option value="马峦办事处综合执法队" />
+					<option value="马峦办事处综合执法队（马峦街道办事处）" />
+					<option value="石井办事处综合执法队" />
+					<option value="石井办事处综合执法队（石井街道办事处）" />
+					<option value="石井办事处市政服务中心" />
+					<option value="石井办事处市政服务中心（石井街道办事处）" />
+					<option value="坑梓自来水公司（坑梓辖区）" />
+					<option value="坑梓自来水公司" />
+					<option value="坑梓自来水公司（坑梓街道办事处）" />
+					<option value="综治维稳办（坑梓街道办事处）" />
+					<option value="城建办" />
+					<option value="城建办（坑梓街道办事处）" />
+					<option value="消防安全委员会办公室" />
+					<option value="消防安全委员会办公室（坑梓街道办事处）" />
+					<option value="城建办（龙田街道办事处）" />
+					<option value="区指挥中心处置" />
+					<option value="区指挥中心" />
+					<option value="坪山区城中村综合整治办" />
+					<option value="坪山联通营业中心" />
+					<option value="宣传统战办公室（龙田街道办事处）" />
+					<option value="坑梓街道分中心处置" />
+					<option value="坑梓街道分中心处置（坑梓街道办事处）" />
+					<option value="劳动办（坪山街道办事处）" />
+					<option value="值班应急与智慧管理指挥分中心（龙田街道办事处）" />
+					<option value="天隆广播电视网络有限公司" />
+				</datalist>
+			 </div>
+		   </div>
+		   <div class="btnn">
+			  <button type="submit" value="Submit">注册</button>
+		   </div>
+			<div class="w3layouts_more-buttn">
+		   <h3>走错了？
+			  <a href="/accounts/login">返回登录页面
+			  </a>
+		   </h3>
+		</div>
+		</form>
+	 </div>
+	 <div class="art-left-w3ls">
+		<h1 class="header-w3ls">
+		   政府大数据实时分析治理系统
+		</h1>
+	 </div>
+  </div>
+  <footer class="bottem-wthree-footer">
+	 <p>Producted by HITSE 24th Group</p>
+  </footer>
+</body>
+</html>

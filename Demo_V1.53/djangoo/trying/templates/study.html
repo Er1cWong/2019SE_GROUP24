@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    结束日期：<input id="to_date_id" name="to_date" type="date" value="2018-10-30"/><br>
+    <button id="formquery1">入库</button><br>
+    <button id="formquery2">回档</button>
+
+</body>
+   <!--   Core JS Files   -->
+   <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+   <script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
+
+   <!--  Checkbox, Radio & Switch Plugins -->
+   <script src="/static/js/bootstrap-checkbox-radio-switch.js"></script>
+
+   <!--  Charts Plugin -->
+   <script src="/static/js/chartist.min.js"></script>
+
+   <!--  Notifications Plugin    -->
+   <script src="/static/js/bootstrap-notify.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $("#formquery1").click(function () {
+        x=document.getElementById("formquery1");  // 找到元素
+ 　　   x.innerHTML="添加中"; 
+        ajax_1();
+        x.innerHTML="入库"; 
+    });
+    $("#formquery2").click(function () {
+        ajax_2();
+    });
+});
+function ajax_1() {
+    var url = $(this);
+    $.ajax({
+        url: url,
+        data: {
+            'change': true,
+            'to_date': $('#to_date_id').val(),
+            'back': false
+        },
+        success: function(return_data){
+            alert(return_data.recall);
+        }
+    })
+};
+function ajax_2() {
+    var url = $(this);
+    $.ajax({
+        url: url,
+        data: {
+            'change': false,
+            'to_date': $('#to_date_id').val(),
+            'back': true
+        },
+        success: function(return_data){
+            alert(return_data.recall);
+        }
+    })
+};
+</script>
+</html>
